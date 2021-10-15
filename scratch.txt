@@ -1,0 +1,12 @@
+Given an array of positive integers representing the values of coins in your possession, write a function that returns the minimum amount of change (the minimum sum of money) that you cannot create. The given coins can have any positive integer value and aren't necessarily unique(i.e., you can have multiple coins of the same value).
+
+For example, if you're given coins = [1, 2, 5], the minimum amount of change that you can't create is 4. If you're given no coins, the minimum amount of change that you can't create is 1.
+
+coins = [5, 7, 1, 1, 2, 3, 22]
+
+answer: 20
+
+1. sort coins
+2. find max possible number by adding all ints
+3. count from 1 to the max possible number
+4. return the first number that can't be found or nothing
