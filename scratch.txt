@@ -6,7 +6,47 @@ coins = [5, 7, 1, 1, 2, 3, 22]
 
 answer: 20
 
-1. sort coins
-2. find max possible number by adding all ints
-3. count from 1 to the max possible number
-4. return the first number that can't be found or nothing
+Parts of problem
+A. if array is empty return 1
+B. count through all possible sums of money
+C. find the first amount that can't be created in any combination
+
+Solutions:
+A. if the array is empty, then return 1
+A1. return 1 if len(array) == 0
+
+B. count from 1 to the maximum possible number (sum of all coins)
+B1. find the max possible number from summing all ints in the array
+B2. count from 1 to the max possible number 
+
+C. for each time through the loop see if you can create the current number
+C1. for the current number, check if it can be created from the coins
+    C1.1. first, check if it can be found with 1 number in the array
+    C1.2. then, check if it can be found with any two numbers
+    C1... continue until you reach the end of the array
+
+
+
+
+
+Recursive Function example
+/*func maxSumRecur(coinArray []int, currentIndex int, sum int) int {
+	if currentIndex == len(coinArray) {
+		return sum
+	}
+	sum += coinArray[currentIndex]
+	return maxSumRecur(coinArray, currentIndex+1, sum)
+}*/
+
+sources:
+https://www.golangprograms.com/golang-program-to-generate-slice-permutations-of-number-entered-by-user.html
+
+https://www.geeksforgeeks.org/all-unique-combinations-whose-sum-equals-to-k/
+
+https://rosettacode.org/wiki/Combinations#Go
+
+https://www.geeksforgeeks.org/print-subsets-given-size-set/
+
+https://www.geeksforgeeks.org/print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/
+
+https://www.geeksforgeeks.org/print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/
