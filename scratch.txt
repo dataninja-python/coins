@@ -19,10 +19,14 @@ B. count from 1 to the maximum possible number (sum of all coins)
 B1. find the max possible number from summing all ints in the array
 B2. count from 1 to the max possible number 
 
-C. for each time through the loop see if you can create the current number
-C1. for the current number, check if it can be created from the coins
+C. for each number from 1 through the max possible number check to see if it can be created from a permutation of the numbers find it
+
+C. 1 number: for each time through the loop see if you can create the current number with just 1 number
+C1. 2 numbers: create every possible combinatin of two numbers
+
+for the current number, check if it can be created from the coins
     C1.1. first, check if it can be found with 1 number in the array
-    C1.2. then, check if it can be found with any two numbers
+    C1.2. then, check if it can be found with 2 numbers
     C1... continue until you reach the end of the array
 
 
@@ -50,3 +54,7 @@ https://www.geeksforgeeks.org/print-subsets-given-size-set/
 https://www.geeksforgeeks.org/print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/
 
 https://www.geeksforgeeks.org/print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/
+
+https://ideone.com/91MYjB
+
+https://www.techiedelight.com/find-permutations-string-cpp-java-iterative/
