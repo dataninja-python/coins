@@ -1,7 +1,6 @@
 package nonconstructible
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -117,20 +116,20 @@ func NonConstructibleChange(coins []int) int {
 
 func NonConstructibleChange2(coins []int) int {
 	minChange := 1
-	numberOfCoins := len(coins)
+	// numberOfCoins := len(coins)
 
-	sumCoins := func(a []int) int {
+	/*sumCoins := func(a []int) int {
 		theSum := 0
 		for _, v := range a {
 			theSum += v
 		}
 		return theSum
-	}
+	}*/
 
-	maxCoins := sumCoins(coins)
-	fmt.Println(minChange)
-	fmt.Println(numberOfCoins)
-	fmt.Println(maxCoins)
+	// maxCoins := sumCoins(coins)
+	// fmt.Println(minChange)
+	// fmt.Println(numberOfCoins)
+	// fmt.Println(maxCoins)
 	// if we reach the last max change number then the minimum change
 	// we can't calculate is + 1 the max change number
 	// if i == maxChange {

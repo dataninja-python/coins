@@ -29,6 +29,7 @@ func execute() int {
 	// minChange := nonconstructible.NonConstructibleChange(change)
 	minChange2 := nonconstructible.NonConstructibleChange2(change)
 	fmt.Println(minChange2)
+	nonconstructible.WalkArray(change)
 	return minChange2
 }
 

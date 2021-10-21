@@ -11,6 +11,10 @@ A. if array is empty return 1
 B. count through all possible sums of money
 C. find the first amount that can't be created in any combination
 
+Problems
+A. if array is empty return 1
+B. 
+
 Solutions:
 A. if the array is empty, then return 1
 A1. return 1 if len(array) == 0
