@@ -27,10 +27,11 @@ func execute() int {
 	// change := []int{109, 2000, 8765, 19, 18, 17, 16, 8, 1, 1, 2, 4}
 	// change := []int{}
 	// minChange := nonconstructible.NonConstructibleChange(change)
-	minChange2 := nonconstructible.NonConstructibleChange2(change)
-	fmt.Println(minChange2)
-	nonconstructible.WalkArray(change)
-	return minChange2
+	// minChange2 := nonconstructible.NonConstructibleChange2(change)
+	// fmt.Println(minChange2)
+	// nonconstructible.WalkArray(change)
+	minChange3 := nonconstructible.TestArray2(change)
+	return minChange3
 }
 
 func main() {
