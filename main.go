@@ -30,8 +30,9 @@ func execute() int {
 	// minChange2 := nonconstructible.NonConstructibleChange2(change)
 	// fmt.Println(minChange2)
 	// nonconstructible.WalkArray(change)
-	minChange3 := nonconstructible.TestArray2(change)
-	return minChange3
+	// minChange3 := nonconstructible.TestArray2(change)
+	minChange4 := nonconstructible.TestArray3(change)
+	return minChange4
 }
 
 func main() {

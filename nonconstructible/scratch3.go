@@ -1,10 +1,5 @@
 package nonconstructible
 
-import (
-	"fmt"
-	"sort"
-)
-
 type makeChange struct {
 	originalSlice []int
 	maxSwaps      int
@@ -82,7 +77,7 @@ func removeIndex(aSlice []int, start int, stop int) []int {
 	return output
 }*/
 
-func makeFirstLast(aHolder makeChange) makeChange {
+/*func makeFirstLast(aHolder makeChange) makeChange {
 	// perform swap
 	// tempSlice := make([]int, len(aHolder.originalSlice))
 	// copy(tempSlice, aHolder.originalSlice)
@@ -100,9 +95,9 @@ func makeFirstLast(aHolder makeChange) makeChange {
 	aHolder.currentSwaps++
 	// if swaps == max swaps and still haven't created the change then change can make change to false and end loop
 	return aHolder
-}
+}*/
 
-func getPermutations(cHolder makeChange) {
+/*func getPermutations(cHolder makeChange) {
 	var sumExist = make(map[int]bool)
 	sumSlice := []int{}
 	cHolder.sumsSlice = sumSlice
@@ -148,8 +143,9 @@ func getPermutations(cHolder makeChange) {
 		cHolder = makeFirstLast(cHolder)
 		// fmt.Println(cHolder)
 	}
-}
+}*/
 
+/*
 func TestArray2(arr []int) int {
 	currentChange := 0
 	// continueCount := true
@@ -175,17 +171,17 @@ func TestArray2(arr []int) int {
 		fmt.Println(aTemp)
 		spread++
 	}*/
-	// comparisonMap := createSumArray(arr)
-	// fmt.Println(comparisonMap)
-	// fmt.Println("Comparison array: ", comparisonArray)
-	// sort.Ints(comparisonArray)
-	// fmt.Println("Sorted array: ", comparisonArray)
-	// comparisonArray = removeDupes(comparisonArray)
-	// fmt.Println("Deduplicated: ", comparisonArray)
-	/*for continueCount {
-		// increment to create first change for comparison
-		currentChange++
+// comparisonMap := createSumArray(arr)
+// fmt.Println(comparisonMap)
+// fmt.Println("Comparison array: ", comparisonArray)
+// sort.Ints(comparisonArray)
+// fmt.Println("Sorted array: ", comparisonArray)
+// comparisonArray = removeDupes(comparisonArray)
+// fmt.Println("Deduplicated: ", comparisonArray)
+/*for continueCount {
+	// increment to create first change for comparison
+	currentChange++
 
-	}*/
-	return currentChange
-}
+}*/
+/*return currentChange
+}*/
