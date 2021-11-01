@@ -31,8 +31,8 @@ func execute() int {
 	// fmt.Println(minChange2)
 	// nonconstructible.WalkArray(change)
 	// minChange3 := nonconstructible.TestArray2(change)
-	minChange4 := nonconstructible.TestArray3(change)
-	return minChange4
+	minChange6 := nonconstructible.TestArray6(change)
+	return minChange6
 }
 
 func main() {

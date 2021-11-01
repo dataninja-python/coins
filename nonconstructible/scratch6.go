@@ -84,7 +84,7 @@ func getSums(startInclusive int, endExclusive int, aWorker workVars) workVars {
 	return aWorker
 }
 
-func TestArray3(arr []int) int {
+func TestArray6(arr []int) int {
 	currentChange := 0
 	// continueCount := true
 	fmt.Println("Starting array: ", arr)
