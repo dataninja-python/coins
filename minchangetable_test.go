@@ -1,6 +1,7 @@
-package nonconstructible
+package main
 
 import (
+	"change/nonconstructible"
 	"testing"
 )
 
@@ -29,7 +30,7 @@ var changeTests = []changeTest{
 
 func TestChange(t *testing.T) {
 	for _, test := range changeTests {
-		if output := NonConstructibleChange(slice); output != test.expected {
+		if output := nonconstructible.NonConstructibleChange(test.slice); output != test.expected {
 			t.Errorf("Output %d not equal to expected %d",
 				output, test.expected)
 		}

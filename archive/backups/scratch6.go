@@ -8,6 +8,25 @@
 	sumSlice       []int
 }
 
+func getMaxChangeMakeable(theWorker workVars) workVars {
+	sort.Ints(theWorker.sumSlice)
+	theWorker.changeMakeable = true
+	counter := 0
+	for i := 0; i < len(theWorker.sumSlice); i++ {
+		counter++
+		if counter == theWorker.sumSlice[i] &&
+			counter > theWorker.lastChangeMakeable {
+			fmt.Println("Adding ", counter, " to lastChangeMakeable")
+			theWorker.lastChangeMakeable = counter
+		}
+
+		if _, ok := theWorker.sumMap[counter]; !ok {
+			return theWorker
+		}
+	}
+	return theWorker
+}
+
 func getNewSlice(originalSlice []int) []int {
 	tempSlice := make([]int, len(originalSlice))
 	copy(tempSlice, originalSlice)

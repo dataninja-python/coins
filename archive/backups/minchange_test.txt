@@ -1,0 +1,15 @@
+package main
+
+import (
+	"change/nonconstructible"
+	"testing"
+)
+
+func TestMinChange(t *testing.T) {
+	got := nonconstructible.NonConstructibleChange([]int{1, 2, 5})
+	want := 4
+
+	if got != want {
+		t.Errorf("got %q, wanted %q", got, want)
+	}
+}

@@ -1,6 +1,7 @@
 package nonconstructible
 
 import (
+	"fmt"
 	"sort"
 )
 
@@ -8,6 +9,7 @@ type nonMakeable interface {
 	minChange() int
 }
 type workVars struct {
+	changeMakeable       bool
 	swaps                int
 	workSlice            []int
 	sumMap               map[int]bool
@@ -75,7 +77,7 @@ func getSumsPerSlice(startInc, stopExc int, aWorker workVars) workVars {
 	// slice to sum before going through loop of each item
 	baseSumSlice := aWorker.workSlice[startInc:stopExc]
 	// add base sum to each item in this slice
-	// NOTE: this is the slice that does not contain items added to baseSum
+	// NOTE: this is the slice that does not contained items added to baseSum
 	remainingSlice := getCutSlice(tempSlice, startInc, stopExc)
 
 	baseSum := 0
@@ -85,10 +87,6 @@ func getSumsPerSlice(startInc, stopExc int, aWorker workVars) workVars {
 			aWorker.sumMap[baseSum] = true
 			aWorker.sumSlice = append(aWorker.sumSlice, baseSum)
 		}
-	}
-	if len(remainingSlice) == 0 {
-		aWorker = getMaxChangeMakeable(aWorker)
-		return aWorker
 	}
 	for i := 0; i < len(remainingSlice); i++ {
 		baseSum += remainingSlice[i]
@@ -102,21 +100,42 @@ func getSumsPerSlice(startInc, stopExc int, aWorker workVars) workVars {
 	return aWorker
 }
 
+func moveFirstToEnd(aSlice []int) []int {
+	// create a new temporary slice
+	tmpSlice := getNewSlice(aSlice)
+	fmt.Println(tmpSlice, aSlice)
+	// capture the first element from the original slice
+	firstElement := aSlice[0]
+	fmt.Println(firstElement)
+	tmpSlice = tmpSlice[1:]
+	tmpSlice = append(tmpSlice, firstElement)
+	return tmpSlice
+}
+
 func getMaxMakeableChange(begIndex int, begSpread int,
 	aWorker workVars) workVars {
-	for spread := begSpread; spread <= len(aWorker.originalSlice); spread++ {
-		for sliceIndex := begIndex; sliceIndex < len(aWorker.originalSlice); sliceIndex++ {
-			// create variables to hold looping through each combination of
-			// the sorted slice to get all sums
-			startSliceInclusive := sliceIndex
-			// must protect against going outside the bounds of slice exclusive
-			// this should be len(slice)
-			endSliceExclusive := min(startSliceInclusive+spread, len(aWorker.originalSlice))
-			aWorker = getSumsPerSlice(startSliceInclusive,
-				endSliceExclusive, aWorker)
+	continueLoop := true
+	for continueLoop {
+		for spread := begSpread; spread <= len(aWorker.originalSlice); spread++ {
+			for sliceIndex := begIndex; sliceIndex < len(aWorker.originalSlice); sliceIndex++ {
+				// create variables to hold looping through each combination of
+				// the sorted slice to get all sums
+				startSliceInclusive := sliceIndex
+				// must protect against going outside the bounds of slice exclusive
+				// this should be len(slice)
+				endSliceExclusive := min(startSliceInclusive+spread, len(aWorker.originalSlice))
+				aWorker = getSumsPerSlice(startSliceInclusive,
+					endSliceExclusive, aWorker)
+			}
+		}
+		if aWorker.swaps < len(aWorker.originalSlice) {
+			fmt.Println(aWorker.sumSlice)
+			aWorker.workSlice = moveFirstToEnd(aWorker.workSlice)
+			aWorker.swaps++
+		} else {
+			continueLoop = false
 		}
 	}
-
 	aWorker.minNonMakeableChange = getMinNonMakeableChange(aWorker)
 	return aWorker
 }
@@ -137,10 +156,11 @@ func NonConstructibleChange(coins []int) int {
 	s1 := getNewSlice(coins)
 	s2 := getNewSlice(coins)
 	sumTracker := make(map[int]bool)
-	worker := workVars{swaps: 0, workSlice: s1, sumMap: sumTracker, originalSlice: s2, lastChangeMakeable: minChange}
+	worker := workVars{changeMakeable: true, swaps: 0, workSlice: s1, sumMap: sumTracker, originalSlice: s2, lastChangeMakeable: minChange}
 	// fmt.Println("Initial worker workVars: ", worker, "\n")
-	// get max change you can make from provided change
-	// check along the way to see what the max amount makeable is
+	// start finding all unique change combinations using an inner loop
+	// to loop through eah index in a coin and a spread to extract the
+	// portion of the coin array to count
 	worker = getMaxMakeableChange(0, 1, worker)
 	minChange = worker.minNonMakeableChange
 	// fmt.Println("End worker workVars: ", worker, "\n")
