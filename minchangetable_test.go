@@ -16,7 +16,7 @@ var changeTests = []changeTest{
 	changeTest{[]int{}, 1},
 	changeTest{[]int{87}, 1},
 	changeTest{[]int{5, 7, 1, 1, 2, 3, 22}, 20},
-	changeTest{[]int{1, 1, 1, 1, 1}, 5},
+	changeTest{[]int{1, 1, 1, 1, 1}, 6},
 	changeTest{[]int{1, 5, 1, 1, 1, 10, 15, 20, 100}, 45},
 	changeTest{[]int{6, 4, 5, 1, 1, 8, 9}, 3},
 	changeTest{[]int{5, 6, 1, 1, 2, 3, 4, 9}, 32},

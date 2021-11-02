@@ -1,6 +1,7 @@
 package nonconstructible
 
 import (
+	"fmt"
 	"sort"
 )
 
@@ -50,6 +51,18 @@ func getCutSlice(aSlice []int, startInc int, stopExc int) []int {
 		}
 	}
 	return temp
+}
+
+func moveFirstToEnd(aSlice []int) []int {
+	// create a new temporary slice
+	tmpSlice := getNewSlice(aSlice)
+	fmt.Println(tmpSlice, aSlice)
+	// capture the first element from the original slice
+	firstElement := aSlice[0]
+	fmt.Println(firstElement)
+	tmpSlice = tmpSlice[1:]
+	tmpSlice = append(tmpSlice, firstElement)
+	return tmpSlice
 }
 
 func getMaxChangeMakeable(theWorker workVars) workVars {
@@ -104,19 +117,28 @@ func getSumsPerSlice(startInc, stopExc int, aWorker workVars) workVars {
 
 func getMaxMakeableChange(begIndex int, begSpread int,
 	aWorker workVars) workVars {
-	for spread := begSpread; spread <= len(aWorker.originalSlice); spread++ {
-		for sliceIndex := begIndex; sliceIndex < len(aWorker.originalSlice); sliceIndex++ {
-			// create variables to hold looping through each combination of
-			// the sorted slice to get all sums
-			startSliceInclusive := sliceIndex
-			// must protect against going outside the bounds of slice exclusive
-			// this should be len(slice)
-			endSliceExclusive := min(startSliceInclusive+spread, len(aWorker.originalSlice))
-			aWorker = getSumsPerSlice(startSliceInclusive,
-				endSliceExclusive, aWorker)
+	continueLoop := true
+	for continueLoop {
+		for spread := begSpread; spread <= len(aWorker.originalSlice); spread++ {
+			for sliceIndex := begIndex; sliceIndex < len(aWorker.originalSlice); sliceIndex++ {
+				// create variables to hold looping through each combination of
+				// the sorted slice to get all sums
+				startSliceInclusive := sliceIndex
+				// must protect against going outside the bounds of slice exclusive
+				// this should be len(slice)
+				endSliceExclusive := min(startSliceInclusive+spread, len(aWorker.originalSlice))
+				aWorker = getSumsPerSlice(startSliceInclusive,
+					endSliceExclusive, aWorker)
+			}
+		}
+		if aWorker.swaps < len(aWorker.originalSlice) {
+			fmt.Println(aWorker.sumSlice)
+			aWorker.workSlice = moveFirstToEnd(aWorker.workSlice)
+			aWorker.swaps++
+		} else {
+			continueLoop = false
 		}
 	}
-
 	aWorker.minNonMakeableChange = getMinNonMakeableChange(aWorker)
 	return aWorker
 }
