@@ -48,7 +48,18 @@ func getMaxChangeMakeable(theWorker workVars) workVars {
 	counter := 0
 	for i := 0; i < len(theWorker.sumSlice); i++ {
 		counter++
-		fmt.Println(counter, " :counter and value: ", theWorker.sumSlice[i])
+		if counter == theWorker.sumSlice[i] &&
+			counter > theWorker.lastChangeMakeable {
+			fmt.Println("Adding ", counter, " to lastChangeMakeable")
+			theWorker.lastChangeMakeable = counter
+		}
+
+		if counter > theWorker.sumSlice[i] {
+			if _, ok := theWorker.sumMap[counter]; !ok {
+				fmt.Println(counter, "can't be created with available elements")
+				return theWorker
+			}
+		}
 	}
 	return theWorker
 }
@@ -63,20 +74,16 @@ func getSumsPerSlice(startInc, stopExc int, aWorker workVars) workVars {
 	remainingSlice := getCutSlice(tempSlice, startInc, stopExc)
 
 	baseSum := 0
-	fmt.Println("Starting base sum: ", baseSum)
 	for _, value := range baseSumSlice {
 		baseSum += value
 		if _, ok := aWorker.sumMap[baseSum]; !ok {
-			fmt.Println(baseSum, " int added to sum")
 			aWorker.sumMap[baseSum] = true
 			aWorker.sumSlice = append(aWorker.sumSlice, baseSum)
 		}
 	}
-	fmt.Println("Interim base sum: ", baseSum)
 	for i := 0; i < len(remainingSlice); i++ {
 		baseSum += remainingSlice[i]
 		if _, ok := aWorker.sumMap[baseSum]; !ok {
-			fmt.Println(baseSum, " int added to basesum")
 			aWorker.sumMap[baseSum] = true
 			aWorker.sumSlice = append(aWorker.sumSlice, baseSum)
 		}
@@ -88,17 +95,21 @@ func getSumsPerSlice(startInc, stopExc int, aWorker workVars) workVars {
 
 func getUniqueMakeableChange(begIndex int, begSpread int,
 	aWorker workVars) workVars {
-	for spread := begSpread; spread <= len(aWorker.originalSlice); spread++ {
-		for sliceIndex := begIndex; sliceIndex < len(aWorker.originalSlice); sliceIndex++ {
-			// create variables to hold looping through each combination of
-			// the sorted slice to get all sums
-			startSliceInclusive := sliceIndex
-			// must protect against going outside the bounds of slice exclusive
-			// this should be len(slice)
-			endSliceExclusive := min(startSliceInclusive+spread, len(aWorker.originalSlice))
-			aWorker = getSumsPerSlice(startSliceInclusive,
-				endSliceExclusive, aWorker)
+	continueLoop := true
+	for continueLoop {
+		for spread := begSpread; spread <= len(aWorker.originalSlice); spread++ {
+			for sliceIndex := begIndex; sliceIndex < len(aWorker.originalSlice); sliceIndex++ {
+				// create variables to hold looping through each combination of
+				// the sorted slice to get all sums
+				startSliceInclusive := sliceIndex
+				// must protect against going outside the bounds of slice exclusive
+				// this should be len(slice)
+				endSliceExclusive := min(startSliceInclusive+spread, len(aWorker.originalSlice))
+				aWorker = getSumsPerSlice(startSliceInclusive,
+					endSliceExclusive, aWorker)
+			}
 		}
+		continueLoop = false
 	}
 	return aWorker
 }
