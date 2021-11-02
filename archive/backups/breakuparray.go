@@ -1,16 +1,10 @@
-package nonconstructible
-
-import (
-	"fmt"
-	"sort"
-)
 
 /*type comparison struct {
 	testNum    int
 	largestSum int
 	startInd   int
 	testArr    []int
-}*/
+}
 func permut(t []int, p [][]int) [][]int {
 	var rc func([]int, int)
 	rc = func(a []int, k int) {
@@ -66,3 +60,4 @@ func WalkArray(arr []int) bool {
 	fmt.Println("Change can't create: ", currentChange)
 	return false
 }
+*/

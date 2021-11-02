@@ -1,10 +1,6 @@
-package nonconstructible
 
-import (
-	"sort"
-)
 
-type workVars struct {
+/*type workVars struct {
 	changeMakeable bool
 	swaps          int
 	workSlice      []int
@@ -16,9 +12,9 @@ func getNewSlice(originalSlice []int) []int {
 	tempSlice := make([]int, len(originalSlice))
 	copy(tempSlice, originalSlice)
 	return tempSlice
-}
+}*/
 
-func removeFromSlice(aSlice []int, startInclusive int,
+/*func removeFromSlice(aSlice []int, startInclusive int,
 	stopExclusive int) []int {
 	temp := []int{}
 	// skip part to be removed
@@ -30,8 +26,9 @@ func removeFromSlice(aSlice []int, startInclusive int,
 		}
 	}
 	return temp
-}
+}*/
 
+/*
 func moveFirstElementToEnd(originalSlice []int) []int {
 	tempSlice := getNewSlice(originalSlice)
 	begSliceLength := len(tempSlice)
@@ -81,8 +78,9 @@ func getSums(startInclusive int, endExclusive int, aWorker workVars) workVars {
 		}
 	}
 	return aWorker
-}
+}*/
 
+/*
 func minNonChange(start int, aWorker workVars) int {
 	lastMatch := 0
 	continueLoop := true
@@ -171,3 +169,4 @@ func TestArray6(arr []int) int {
 	currentChange = minNonChange(currentChange, worker)
 	return currentChange
 }
+*/

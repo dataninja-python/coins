@@ -1,4 +1,4 @@
-package nonconstructible
+
 
 /*type workVars struct {
 	changeMakeable bool
@@ -12,9 +12,9 @@ func getNewSlice(originalSlice []int) []int {
 	tempSlice := make([]int, len(originalSlice))
 	copy(tempSlice, originalSlice)
 	return tempSlice
-}
+}*/
 
-func removeFromSlice(aSlice []int, startInclusive int,
+/*func removeFromSlice(aSlice []int, startInclusive int,
 	stopExclusive int) []int {
 	temp := []int{}
 	// skip part to be removed
@@ -26,9 +26,9 @@ func removeFromSlice(aSlice []int, startInclusive int,
 		}
 	}
 	return temp
-}
+}*/
 
-func moveFirstElementToEnd(originalSlice []int) []int {
+/*func moveFirstElementToEnd(originalSlice []int) []int {
 	tempSlice := getNewSlice(originalSlice)
 	begSliceLength := len(tempSlice)
 	// fmt.Println("Slice length @ start: ", begSliceLength)
@@ -47,9 +47,9 @@ func moveFirstElementToEnd(originalSlice []int) []int {
 	// "Original slice: ", originalSlice)
 	tempSlice = append(tempSlice, firstElement)
 	return tempSlice
-}
+}*/
 
-func getSums(startInclusive int, endExclusive int, aWorker workVars) workVars {
+/*func getSums(startInclusive int, endExclusive int, aWorker workVars) workVars {
 	tempSlice := getNewSlice(aWorker.workSlice)
 	// grab original sum to start
 	startingSumSlice := aWorker.workSlice[startInclusive:endExclusive]
@@ -77,9 +77,9 @@ func getSums(startInclusive int, endExclusive int, aWorker workVars) workVars {
 		}
 	}
 	return aWorker
-}
+}*/
 
-func TestArray3(arr []int) int {
+/*func TestArray3(arr []int) int {
 	currentChange := 0
 	// continueCount := true
 	fmt.Println("Starting array: ", arr)
@@ -156,5 +156,4 @@ func TestArray3(arr []int) int {
 		}
 	}
 	return currentChange
-}
-*/
+}*/

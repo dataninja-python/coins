@@ -1,6 +1,6 @@
-package nonconstructible
 
-type makeChange struct {
+
+/*type makeChange struct {
 	originalSlice []int
 	maxSwaps      int
 	currentSwaps  int
@@ -17,7 +17,7 @@ func removeIndex(aSlice []int, start int, stop int) []int {
 		return append(aSlice[:start], aSlice[len(aSlice):]...)
 	}
 	return append(aSlice[:start], aSlice[start+stop:]...)
-}
+}*/
 
 /*func removeDupes(intSlice []int) []int {
 	keys := make(map[int]bool)
