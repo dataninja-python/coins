@@ -1,7 +1,6 @@
 package nonconstructible
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -94,7 +93,7 @@ func minNonChange(start int, aWorker workVars) int {
 				lastMatch = start
 				break
 			} else if i >= len(aWorker.sumSlice)-1 {
-				fmt.Println(lastMatch)
+				// fmt.Println(lastMatch)
 				continueLoop = false
 			}
 		}
@@ -105,10 +104,10 @@ func minNonChange(start int, aWorker workVars) int {
 func TestArray6(arr []int) int {
 	currentChange := 0
 	// continueCount := true
-	fmt.Println("Starting array: ", arr)
+	// fmt.Println("Starting array: ", arr)
 	// sort array
 	sort.Ints(arr)
-	fmt.Println("Sorted array: ", arr)
+	// fmt.Println("Sorted array: ", arr)
 	// check against base case scenarios that
 	// make the answer automatically 1
 	if len(arr) == 0 || arr[0] != 1 {
@@ -168,7 +167,7 @@ func TestArray6(arr []int) int {
 	} else {
 		worker.changeMakeable = false
 	}
-	fmt.Println(worker.sumSlice)
+	// fmt.Println(worker.sumSlice)
 	currentChange = minNonChange(currentChange, worker)
 	return currentChange
 }
