@@ -5,47 +5,24 @@ import (
 	"sort"
 )
 
-var changeMap map[int]bool
-var changeSlice []int
-
-func getNewSlice(originalSlice []int) []int {
-	tempSlice := make([]int, len(originalSlice))
-	copy(tempSlice, originalSlice)
-	return tempSlice
-}
-
-func canMakeChange(target int, theSlice []int) bool {
-	tmp := getNewSlice(theSlice)
-	fmt.Println(tmp)
-	return false
-}
-
 func NonConstructibleChange(coins []int) int {
-	// initialize key values
-	minChange := 0
-	changeMap = make(map[int]bool)
-	changeSlice = []int{}
-	workSlice := getNewSlice(coins)
 
+	fmt.Println("Initial coin slice: ", coins)
 	// sort array
-	sort.Ints(workSlice)
+	sort.Ints(coins)
+	fmt.Println("Sorted coin slice: ", coins)
 
-	// if array is empty or first element != 1
-	// then you can't construct 1
-	if len(workSlice) == 0 || workSlice[0] != 1 {
-		return 1
+	// set up a variable to track the change you can create
+	change := 0
+	fmt.Println("Starting change: ", change)
+	for _, c := range coins {
+		if c > change+1 {
+			fmt.Println("returning early: ", change+1)
+			return change + 1
+		}
+		change += c
 	}
-
-	continueLoop := true
-
-	for continueLoop {
-		// increment minimum change
-		minChange++
-
-		// determine if can make it using any combinations of methods
-		continueLoop = canMakeChange(minChange, workSlice)
-	}
-
-	fmt.Println(workSlice)
-	return minChange
+	fmt.Println("Final change: ", change)
+	fmt.Println("Returned change: ", change+1)
+	return change + 1
 }
