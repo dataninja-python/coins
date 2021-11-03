@@ -15,7 +15,7 @@ func timeTrack(start time.Time, name string) {
 func execute() int {
 	// change := []int{}
 	// change := []int{1, 2, 5}
-	// change := []int{5, 7, 1, 1, 2, 3, 22}
+	change := []int{5, 7, 1, 1, 2, 3, 22}
 	// change := []int{1, 1, 1, 1, 1}
 	// change := []int{1, 5, 1, 1, 1, 10, 15, 20, 100}
 	// change := []int{6, 4, 5, 1, 1, 8, 9}
@@ -26,7 +26,7 @@ func execute() int {
 	// change := []int{1, 1}
 	// change := []int{2}
 	// change := []int{1}
-	change := []int{109, 2000, 8765, 19, 18, 17, 16, 8, 1, 1, 2, 4}
+	// change := []int{109, 2000, 8765, 19, 18, 17, 16, 8, 1, 1, 2, 4}
 	// change := []int{}
 	minNonMakeableChange := nonconstructible.NonConstructibleChange(change)
 	return minNonMakeableChange
